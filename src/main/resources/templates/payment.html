@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="NetFloristProject">
+<head>
+  <title>Bootstrap Example</title>
+   
+     <script src="/angular.js" type="text/javascript"></script>
+    <script src="/angular-route.min.js" type="text/javascript"></script>
+    <script src="/app.js" type="text/javascript"></script>
+    <script src="/PartnerService.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  
+<style>
+    .cc-img {
+        margin: 0 auto;
+    }
+</style>
+</head>
+
+
+<body ng-controller="productControllerView">
+
+<div class="container">
+
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" id="paymentForm">proceed</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Order Payment</h4>
+        </div>
+        <div class="modal-body">
+          
+
+    
+                <div class="panel-heading">
+                    <div class="row">
+                        <h3 class="text-center">Payment Details</h3>
+                        <img class="img-responsive cc-img" src="http://www.prepbootstrap.com/Content/images/shared/misc/creditcardicons.png" />
+                    </div>
+                </div>
+            
+            <div class="panel-body">
+                    <form role="form">
+            
+                       <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="tel">CARD Holder</label>
+                                    <input type="text" class="form-control" ng-model="cardHolder" placeholder="Card Owner Names" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 pull-left">
+                                <div class="form-group">
+                                    <label for="tel">CARD NUMBER</label>
+                                    <div class="input-group">
+                                        <input type="tel" class="form-control" ng-model="cardNo" placeholder="Valid Card Number" />
+                                        <span class="input-group-addon"><span class="fa fa-credit-card"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-5 col-md-5 pull-left">
+                                <div class="form-group">
+                                    <label for="tel">CV CODE</label>
+                                    <input type="tel" class="form-control" ng-model="cvv" placeholder="Last 4 digits on back of card" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-5 col-md-5 pull-left">
+                                <div class="form-group">
+                                    <label for="password">Pin</label>
+                                    <input type="password" class="form-control" ng-model="bankPin" placeholder="Last 4 digits on back of card" />
+                                </div>
+                            </div>
+                        </div>
+                 
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button class="btn btn-warning btn-lg btn-block" ng-click="payment()">Process payment</button>
+                        </div>
+                    </div>
+</div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+         <div class="modal-footer">
+          <button type="button" class="btn btn-success"  ng-click="placeOrder()">Proceed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#paymentForm").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
+</body>
+</html>
