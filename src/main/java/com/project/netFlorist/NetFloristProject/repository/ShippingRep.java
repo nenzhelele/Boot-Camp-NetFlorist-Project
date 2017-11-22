@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ShippingRep extends CrudRepository<Shipping,Integer>{
     
-     //public Product findAllByname(String lname);
+ 
     
 }
 

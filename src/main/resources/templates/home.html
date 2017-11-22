@@ -44,7 +44,7 @@
 <footer class="container-fluid text-center">
         <h1>NETFLORIST</h1>
         <form class="form-inline">Search:
-    <input type="text" class="form-control" size="50" ng-model="searchText.name" placeholder="Search item"/>
+    <input type="text" class="form-control" size="50" ng-model="searchText.name" placeholder="Search item by name"/>
 
   </form>
 </footer> 
@@ -66,7 +66,7 @@
         
         
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>log-out</a></li>
+        <li><a href="index.html"><span class="glyphicon glyphicon-log-out"></span>log-out</a></li>
         <li><input type="button" class="btn btn-shopping-cart" value="cart" data-toggle="modal" data-target="#myModal" /></li>
       </ul>
     </div>
@@ -93,7 +93,7 @@
         <td><span><img ng-src="{{product.image}}" width="250" height="250" alt=""/></span></td>
         <td>  {{product.name}} </td>
         <td>  {{product.description}}</td>
-        <td>   {{product.price | currency}}  </td>
+        <td>   {{product.price | currency:"R"}}  </td>
          <td><a type="button"  ng-click="addItem(product)" class="btn btn-info btn-md" ><span class="glyphicon glyphicon-shopping-cart"></span>Add To Cart</a></td>
        
     </tr>
@@ -113,7 +113,7 @@
       <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close btn-danger" data-dismiss="modal">&times;</button>
-         <b> <h4 class="modal-title">Added Product:{{cartItems.length}}:{{CartAmount | currency}}</h4></b>
+         <b> <h4 class="modal-title">Added Product:{{cartItems.length}}:{{CartAmount | currency:"R"}}</h4></b>
         </div> 
         <div class="modal-body">
            <table class="table table-hover table-bordered">
@@ -132,12 +132,11 @@
      <td>   {{product.id}}  </td>
         <td><span><img ng-src="{{product.image}}" width="50" height="50" alt="unavailble image"/></span></td>
         <td>  {{product.name}} </td>
-         <td>   {{product.price | currency}}  </td>
+         <td>   {{product.price | currency:"R"}}  </td>
         <td>  {{product.description}}</td>
-        <td>{{product.quantity}}
-        <button ng-click="increase(item)">+
-        </button>{{item.quantity}}<button ng-click="decrease(item)">-
-        </button></td>
+        <td>{{product.quantity}}</td>
+       
+       
         <td>
              <div>
                 <button type="button" ng-click="removeItem()"  class="btn btn-default btn-sm"> <span class="glyphicon glyphicon-remove btn btn-danger"></span></button>
@@ -167,7 +166,7 @@
       <div class="modal-content">
     <div class="modal-header">
 <button type="button" class="close btn-danger" data-dismiss="modal">&times;</button>
-<h4 class="modal-title">Added Product:{{cartItems.length}}:{{CartAmount | currency:R}}</h4>
+<h4 class="modal-title">Added Product:{{cartItems.length}}:{{CartAmount | currency:"R"}}</h4>
 </div>
 
 
@@ -186,7 +185,7 @@
            <div class="row">
                <div class="col-xs-12 col-md-5 pull-left">
                    <div class="form-group">
-                        <label for="tel">CARD Holder</label>
+                        <label for="text">CARD Holder</label>
                         <div class="input-group">
                         <input type="text" class="form-control" ng-model="cardHolder" placeholder="Card Owner Names" />
                         <span class="input-group-addon"><span class="fa fa-credit-card"></span></span>
@@ -197,9 +196,9 @@
     <div class="row">
         <div class="col-xs-12 col-md-5 pull-left">
             <div class="form-group">
-                <label for="tel">CARD NUMBER</label>
+                <label for="text">CARD NUMBER</label>
                 <div class="input-group">
-                    <input type="tel" class="form-control" ng-model="cardNo" placeholder="Valid Card Number" />
+                    <input type="text" class="form-control" ng-model="cardNo" placeholder="Valid Card Number" />
                     <span class="input-group-addon"><span class="fa fa-credit-card"></span></span>
                 </div>
             </div>
@@ -222,7 +221,11 @@
 </div>
  </div>    
     </div> 
-    
+     <script>
+function myFunction() {
+    location.reload();
+}
+</script>
     
 </body>
 </html>

@@ -22,9 +22,9 @@ public class BankService {
      @Autowired
     private BankRep bankRep;
     
-     public Object getAll()
+    public Bank getAll(int cardNo, String cardHolder)
     {
-        return bankRep.findAll();
+        return bankRep.viewBankDetails(cardNo, cardHolder);
     }
     
       public List<Bank> payment(){

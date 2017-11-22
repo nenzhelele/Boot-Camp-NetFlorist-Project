@@ -40,7 +40,7 @@ public class CustomerController {
         return customers;
     }
     
-	@RequestMapping("/")
+	/*@RequestMapping("/")
     public String Home() {
         return "home";
     }
@@ -54,7 +54,7 @@ public class CustomerController {
     public String login() {
         return "login";
     }
-   
+   */
     
    
     

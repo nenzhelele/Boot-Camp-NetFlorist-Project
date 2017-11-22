@@ -39,7 +39,7 @@
 <footer class="container-fluid text-center">
         <h1>NETFLORIST</h1>
         <form class="form-inline">Search:
-    <input type="text" class="form-control" size="50" ng-model="searchText.name" placeholder="Search item"/>
+    <input type="text" class="form-control" size="50" ng-model="searchText.name" placeholder="Search item by name"/>
 
   </form>
 </footer> 
@@ -88,7 +88,7 @@
         <td><span><img ng-src="{{product.image}}" width="250" height="250" alt=""/></span></td>
         <td>  {{product.name}} </td>
         <td>  {{product.description}}</td>
-        <td>   {{product.price | currency}}  </td>
+        <td>   {{product.price | currency:"R"}}  </td>
          
        
     </tr>
@@ -115,19 +115,19 @@
         <div class="modal-body" style="padding:40px 50px;">
           <form role="form">
             <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter email"  ng-model="email"/>
+              <label for="Email"><span class="glyphicon glyphicon-user"></span>Email</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email"  ng-model="email" autocomplete="off"/>
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Enter password" ng-model="password"/>
+              <input type="password" class="form-control" id="password" placeholder="Enter password" ng-model="password" autocomplete="off"/>
             </div>
             <div class="checkbox">
               <label><input type="checkbox" value="" />Remember me</label>
             </div>
               
-              <button type="submit" class="btn btn-success btn-block" ng-click="gets()"><span class="glyphicon glyphicon-off"></span> Login</button>
-              <button type="button" class="btn btn-default btn-block" ng-click="create()" id="myreg"><span class="glyphicon glyphicon-off"></span> signup</button>
+              <button type="submit" class="btn btn-success btn-block" onclick="myFunction()" ng-click="gets()"><span class="glyphicon glyphicon-off"></span> Login</button>
+              <button type="button" class="btn btn-default btn-block" onclick="myFunction()" ng-click="create()" id="myreg"><span class="glyphicon glyphicon-off"></span> signup</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -153,6 +153,10 @@ $(document).ready(function(){
         $("#myModal").modal();
     });
 });
+
+function myFunction() {
+    location.reload();
+}
 
 </script>
 

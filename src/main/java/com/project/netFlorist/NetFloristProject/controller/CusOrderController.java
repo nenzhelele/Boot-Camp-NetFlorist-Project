@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -25,13 +26,20 @@ public class CusOrderController {
     
     @RequestMapping(value="/Custorder", method =RequestMethod.POST)
     public CusOrder add(@RequestBody CusOrder cusorder){
+       
      CusOrder cusorde = service.saveOrder(cusorder);
      if(cusorde != null)
      {
          System.out.println("odered");
+         System.out.println("date: " + cusorde.getOrderedDate());
      }
     return cusorder;
     }
     
+   @RequestMapping(value="/order", method = RequestMethod.GET)
+   @ResponseBody
+    public Object customerOrder(){
+    return service.findAll();
+    }
     
 }

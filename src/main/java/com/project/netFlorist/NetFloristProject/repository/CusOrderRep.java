@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CusOrderRep extends CrudRepository<CusOrder, Integer> {
-	// public List<CusOrder> findById(Integer Id);
+	
 	 
 }

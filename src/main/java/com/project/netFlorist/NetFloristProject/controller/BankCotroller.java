@@ -5,9 +5,10 @@
  */
 package com.project.netFlorist.NetFloristProject.controller;
 
+import com.project.netFlorist.NetFloristProject.entity.Bank;
 import com.project.netFlorist.NetFloristProject.service.BankService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,17 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @author User
  */
 @RestController
-public class Bank {
+public class BankCotroller {
     
     @Autowired
     private BankService Service;
-    
-   public List<Bank> banks;
 
-   @RequestMapping(value="/pay", method = RequestMethod.GET)
-    public Object getAll()
+   @RequestMapping(value="/pay/{cardNo}/{cardHolder}", method = RequestMethod.GET)
+    public Bank getAll(@PathVariable int cardNo, @PathVariable String cardHolder)
     {
-        return Service.getAll();
+        return Service.getAll(cardNo,cardHolder);
     }
     
 }

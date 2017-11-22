@@ -20,53 +20,51 @@ public class CusOrder implements Serializable{
     
 
     @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int Id;
     @Column(name = "quantity")
     private int quantity;
-    @Column(name = "total_amount")
+    @Column(name = "amount")
     private double amount;
     @Column(name = "status", updatable = true)
     private String status;
     @Temporal(TemporalType.DATE)
-    @Column(name = "ordered_date")    
-    private Date orderedDate;
-    //@Temporal(TemporalType.DATE)
-    
-    
-    //@OneToMany(cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.LAZY)
-   // private List<Product> product =new ArrayList<>();
-    
-    
-    
+    @Column(name = "date")    
+    private Date date = new Date();
+    @Column(name="name")
+    private String name;
+    @Column(name="description")
+    private String description;
+    @Column(name="price")
+    private Float price;
+    @Column(name = "image",length=1000000)
+    private String image;
+    @Column(name="orderno")
+    private int orderno;
 
-    public CusOrder(int quantity, double amount, String status, Date orderedDate/*,int customerId*/) {
-        this.quantity = quantity;   
+    public CusOrder(int Id, int quantity, double amount, String status, Date date, String name, String description, Float price, String image, int orderNo) {
+        this.Id = Id;
+        this.quantity = Id;
         this.amount = amount;
         this.status = status;
-        //this.customerId= customerId;
-        this.orderedDate = orderedDate;
-        
+        this.date = date;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.image = image;
+        this.orderno = orderNo;
     }
 
     public CusOrder() {
     }
-    
+
     public int getId() {
         return Id;
     }
 
     public void setId(int Id) {
-       this.Id = Id;
+        this.Id = Id;
     }
-
-//    public List<Product> getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(List<Product> product) {
-//        this.product = product;
-//    }
 
     public int getQuantity() {
         return quantity;
@@ -76,7 +74,6 @@ public class CusOrder implements Serializable{
         this.quantity = quantity;
     }
 
-    
     public double getAmount() {
         return amount;
     }
@@ -84,14 +81,6 @@ public class CusOrder implements Serializable{
     public void setAmount(double amount) {
         this.amount = amount;
     }
-
-//    public int getCustomerId() {
-//        return customerId;
-//    }
-//
-//    public void setCustomerId(int customerId) {
-//        this.customerId = customerId;
-//    }
 
     public String getStatus() {
         return status;
@@ -102,14 +91,51 @@ public class CusOrder implements Serializable{
     }
 
     public Date getOrderedDate() {
-        return orderedDate;
+        return date;
     }
 
-    public void setOrderedDate(Date orderedDate) {
-        
-        this.orderedDate = orderedDate;
+    public void setOrderedDate(Date date) {
+        this.date = date;
     }
 
-    
-   
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getOrderno() {
+        return orderno;
+    }
+
+    public void setOrderno(int orderno) {
+        this.orderno = orderno;
+    }
+
 }

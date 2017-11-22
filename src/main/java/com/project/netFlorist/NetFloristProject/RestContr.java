@@ -71,4 +71,9 @@ public class RestContr {
     public String contactUs() {
         return "contactUs";
     }
+    
+    @RequestMapping(value="/orderP")
+    public String customerOrder(){
+    return "orderP";
+    }
 }

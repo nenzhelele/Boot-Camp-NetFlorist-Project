@@ -79,7 +79,7 @@
 	   <div class="cols-sm-10">
 	     <div class="input-group">
 	        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-	        <input type="text" class="form-control" name="name" id="name" ng-model="name" placeholder="Enter your Name"/>
+	        <input type="text" class="form-control" name="name" id="name" ng-model="name" placeholder="Enter your Name" autocomplete="off"/>
 	     </div>
 	   </div>
 	</div>
@@ -88,31 +88,31 @@
            <div class="cols-sm-10">
 	     <div class="input-group">
 	       <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-	         <input type="text" class="form-control" name="username" id="username" ng-model="surname" placeholder="Enter your Username"/>
+	         <input type="text" class="form-control" name="username" id="username" ng-model="surname" placeholder="Enter your Username" autocomplete="off"/>
 	     </div>
 	   </div>
 	 </div>
 	 <div class="form-group">
-	  <label for="Email" class="cols-sm-2 control-label">Email</label>
+	  <label for="inputEmail" class="cols-sm-2 control-label">Email</label>
 	    <div class="cols-sm-10">
 	      <div class="input-group">
 	        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-		<input type="email" class="form-control" name="email" id="email" ng-model="email" placeholder="Enter your Email"/>
+		<input type="email" class="form-control" name="email" id="email" ng-model="email" placeholder="Enter your Email" autocomplete="off"/>
 	      </div>
 	    </div>
 	 </div>
         <div class="form-group">
-	 <label for="password" class="cols-sm-2 control-label">Password</label>
+	 <label for="inputPassword" class="cols-sm-2 control-label">Password</label>
 	    <div class="cols-sm-10">
 	      <div class="input-group">
 	        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-	            <input type="password" class="form-control" name="password" id="password" ng-model="password" placeholder="Enter your Password"/>
+	            <input type="password" class="form-control" name="password" id="password" ng-model="password" placeholder="Enter your Password" autocomplete="off"/>
 	       </div>
 	    </div>
 	</div>
 
 		<div class="form-group ">
-                    <button  type="submit" id="submit" ng-click="create()" class="btn btn-primary" >Register</button>
+                    <button  type="submit" id="submit" onclick="myFunction()" ng-click="create()" class="btn btn-primary" >Register</button>
 		</div>
 						
 </form>
@@ -148,8 +148,8 @@
               <label><input type="checkbox" value="" />Remember me</label>
             </div>
               
-              <button type="submit" class="btn btn-success btn-block" ng-click="gets()"><span class="glyphicon glyphicon-off"></span> Login</button>
-              <button type="button" class="btn btn-default btn-block" ng-click="create()" id="myreg"><span class="glyphicon glyphicon-off"></span> signup</button>
+              <button type="submit" class="btn btn-success btn-block" onclick="myFunction()" ng-click="gets()"><span class="glyphicon glyphicon-off"></span> Login</button>
+              <button type="button" class="btn btn-default btn-block" onclick="myFunction()" ng-click="create()" id="myreg"><span class="glyphicon glyphicon-off"></span> signup</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -175,7 +175,9 @@ $(document).ready(function(){
         $("#myModal").modal();
     });
 });
-
+function myFunction() {
+    location.reload();
+}
 </script>
 
 </body>

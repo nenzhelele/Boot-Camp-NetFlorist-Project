@@ -6,7 +6,9 @@
 package com.project.netFlorist.NetFloristProject.repository;
 
 import com.project.netFlorist.NetFloristProject.entity.Bank;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BankRep extends CrudRepository<Bank, Integer>{
 
-   
+   @Query("SELECT b FROM Bank b WHERE b.cardNo = :cardNo AND b.cardHolder =:cardHolder")
+   public Bank viewBankDetails(@Param(value = "cardNo") int cardNo, @Param(value = "cardHolder") String cardHolder);
  
 }

@@ -39,7 +39,7 @@
 <footer class="container-fluid text-center">
         <h1>NETFLORIST</h1>
         <form class="form-inline">Search:
-    <input type="text" class="form-control" size="50" ng-model="searchText.name" placeholder="Search item"/>
+    <input type="text" class="form-control" size="50" ng-model="searchText.name" placeholder="Search item by name"/>
 
   </form>
 </footer> 
@@ -55,13 +55,13 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/home.html">Home</a></li>
+        <li class="active"><a href="adminViewP.html">Home</a></li>
         <li><a href="AdminAddP.html">Add Product</a></li>
-        
+        <li><a href="orderP.html">View-Orders</a></li>
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>log-out</a></li>
+        <li><a href="index.html"><span class="glyphicon glyphicon-log-out"></span>log-out</a></li>
       </ul>
     </div>
   </div>
@@ -86,13 +86,14 @@
         <td>   {{product.id}}  </td>
          <td>  {{product.name}} </td>
           <td>  {{product.description}}</td>
-           <td>   {{product.price | currency}}  </td>
+           <td>   {{product.price | currency:"R"}}  </td>
              <td><span><img ng-src="{{product.image}}" width="250" height="250" alt=""/></span></td>
  
    <td>
         <div>
          <input type="submit" name="delete" id="submit" ng-click="deleteProduct(product.id)" value="delete" class="btn btn-danger" />
-            <input type="submit" name="update" id="submit" ng-click="" value="update" class="btn btn-info" />
+        <!--    <input type="submit" name="update" id="submit" ng-click="updateProduct(product.id)" value="update" class="btn btn-info" />
+        -->
         </div>
        </td>
     </tr>

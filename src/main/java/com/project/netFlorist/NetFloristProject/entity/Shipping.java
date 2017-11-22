@@ -5,7 +5,6 @@
  */
 package com.project.netFlorist.NetFloristProject.entity;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="shipping")
-public class Shipping implements Serializable{
+public class Shipping{
 
       @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

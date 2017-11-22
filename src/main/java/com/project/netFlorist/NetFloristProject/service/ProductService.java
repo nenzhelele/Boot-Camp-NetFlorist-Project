@@ -50,7 +50,13 @@ productRep.findAll().forEach(products :: add);
     public void deletebyId(int Id) {
         productRep.delete(Id);
     }
+    ////////////////////////update////////////////////////////////////////////
+//     public int updated(int Id, String name, String description , float price)
+//    {
+//        
+//        return productRep.updateItems(Id, name, description, price);
+//    }
  
-    
+ 
     
 }

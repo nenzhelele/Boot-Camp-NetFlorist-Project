@@ -18,4 +18,8 @@ public interface ProductRep extends CrudRepository <Product ,Integer> {
     
     public Product findAllByname(String name);
     
+ 
+   
+    
+    
 }

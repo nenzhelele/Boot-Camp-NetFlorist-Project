@@ -21,7 +21,7 @@ myMod.config(["$routeProvider","$locationProvider",function($routeProvider,$loca
       redirectTo :'/'
    });
 }]);
-
+////////////////////////////////new customer registering/////////////////////////////////  
 myMod.controller("Cus", function ($scope, $http,$location)
 		{
 	var config = {
@@ -33,7 +33,7 @@ myMod.controller("Cus", function ($scope, $http,$location)
         var url = 'http://localhost:8080/resting';
         $scope.create = function ()
         {
-            alert("successfuly registered");
+            alert("press OK to finish registering");
             $http.post(url, {
                   email: $scope.email,
                   name: $scope.name,
@@ -56,7 +56,7 @@ myMod.controller("Cus", function ($scope, $http,$location)
     
     
     
-    
+    ////////////////////////////////customer logging/////////////////////////////////  
     myMod.controller("login",function ($scope,$http,$location)
 		{
 	var config = {
@@ -111,29 +111,27 @@ else
 
 
 myMod.controller("productC", function ($scope, $http,$location)
-{
-
-            var config = {
-headers: {
-    'Content-Type': 'application/json;charset=utf-8;'
-}
-};
+      {
+        var config = {
+           headers: {
+           'Content-Type': 'application/json;charset=utf-8;'
+                    }
+                    };   
+     ////////////////////////////////add product/////////////////////////////////               
         $scope.image = null;
           $http.defaults.headers.post["Content-Type"] = "application/json";
-                        alert("hellow");
-      var url = 'http://localhost:8080/saveP';
-
-        var imageCopy = null;
-         var image = null;
-           var handleImageSelect = function (evt)
+               var url = 'http://localhost:8080/saveP';
+               var imageCopy = null;
+               var image = null;
+               var handleImageSelect = function (evt)
         {
-            var files = evt.target.files;
-             var file = files[0];
-
-            if (files && file) {
-
+      var files = evt.target.files;
+         var file = files[0];
+            if (files && file)
+            {
                 var reader = new FileReader();
-                reader.onload = function (readerEvt) {
+                  reader.onload = function (readerEvt) 
+                {
                     var binaryString = readerEvt.target.result;
                      imageCopy = btoa(binaryString);
                       image = 'data:image/octet-stream;base64,' + imageCopy;
@@ -141,31 +139,32 @@ headers: {
 
                 };
 
-                reader.readAsBinaryString(file);
+          reader.readAsBinaryString(file);
             }
         };
 
 if(window.File && window.FileReader && window.FileList && window.Blob)
  {
-    document.getElementById('image').addEventListener('change', handleImageSelect, false);
-  }
-        else
-{
+   document.getElementById('image').addEventListener('change', handleImageSelect, false);
+ }
+else
+  { 
     alert('The File APIs are not fully supported in this browser.');
-}
+  }
     $scope.product = function ()
     {
-        var data = {
+           var data = {
             'name': $scope.name,
              'description': $scope.description,
               'price': $scope.price,
                'image': $scope.image};
               console.log(data);
-
+              
+           
      $http.post(url,data ).then(successCallback, errorCallback);
         function successCallback(response)
         {
-          alert("product saved");
+         alert("press ok to add product")
              console.log(response.data);
         }
             function errorCallback(response) 
@@ -173,7 +172,7 @@ if(window.File && window.FileReader && window.FileList && window.Blob)
                 console.log(response);
 
             };        
-        };
+    };
                     
  
 });
@@ -184,41 +183,40 @@ myMod.controller("productControllerView", function ($scope,$filter, $http,$locat
             headers: {
                 'Content-Type': 'application/json;charset=utf-8;'
                        }};
-			
-             var urls = 'http://localhost:8080/adminView';
-		   
-			    
+////////////////////////////////view product/////////////////////////////////  			
+var urls = 'http://localhost:8080/adminView';
+		   	    
       $http.get(urls,config).then(successCallback);
-        function successCallback(response) {
+        function successCallback(response) 
+    {
          $scope.products =response.data;
           console.log($scope.products);
     };
+////////////////////////////////delete product/////////////////////////////////  
+$scope.deleteProduct = function(Id)
+{
+  console.log(Id);
+      $http.delete('http://localhost:8080//productdelete/' + Id + '')
+          .then( function(response)
+{
 
-      $scope.deleteProduct = function(Id)
-        {
-          console.log(Id);
+           alert('are sure you want to\n\
+                  deleted product id '+ Id);
+     return response.data;
+}, 
+    function(errResponse)
+{
+alert('Error while deleting product');
+  console.error('Error while deleting product');
+    return response.data;
+}); 
 
-              $http.delete('http://localhost:8080//productdelete/' + Id + '')
-                  .then( function(response)
-        {
-                    
-          alert('product successfully deleted id '+ Id);
-
-             return response.data;
-        }, 
-          function(errResponse)
-        {
-        alert('Error while deleting product');
-          console.error('Error while deleting product');
-            return response.data;
-        }); 
-                    
-        };   
-
+};   
+ 
 $scope.cartItems=[];
   $scope.CartAmount =0.0;
  
-  //$scope.itemsNum =quantity;
+ 
   
     $scope.addItem = function(product)
    {
@@ -240,8 +238,7 @@ $scope.cartItems=[];
                     image: product.image,
                        totalAmount:amount
           });
-//           
-//return $scope.cartItems;
+
               console.log("dont exist");
         } 
     else{
@@ -258,31 +255,31 @@ $scope.cartItems=[];
                 existingItem.totalAmount = totalAmount;
         }
           
-      //adding two product of different id-number
+   
         console.log($scope.cartItems);
          var totalAmount = 0.0;
           for(var a = 0; a < $scope.cartItems.length; a++)
         {
-            var amount = parseInt($scope.cartItems[a].totalAmount + totalAmount);
-             totalAmount = amount;
+        var amount = parseInt($scope.cartItems[a].totalAmount + totalAmount);
+         totalAmount = amount;
         }
         $scope.CartAmount = totalAmount;
          return totalAmount;
             
     };
     
-    //increase item in cart
+  ////////////////////////////////increase item in cart/////////////////////////////////  
     $scope.increase=function(item,price)
     {
-        
         item.quantity++;
-        item.price= item.price *item.quantity;
+          item.price= item.price *item.quantity;
     };
-     function getItemIndex(item){
-        
-        for (var i = 0, max = $scope.cartItems[i].length; i < max; i++) {
-            if ($scope.cartItems[i].id===item.id) {
-                
+      function getItemIndex(item)
+      {
+        for (var i = 0, max = $scope.cartItems[i].length; i < max; i++)
+        {
+            if ($scope.cartItems[i].id===item.id)
+            {
                 return i;
             }
             break;
@@ -290,143 +287,131 @@ $scope.cartItems=[];
         return i;
     };
     
-    //decrease item from cart
+////////////////////////////////decrease item in cart/////////////////////////////////  
     $scope.decrease =function(item,price){
         var index=getItemIndex(item);
-          if(item.quantity -1===0){
-            
+          if(item.quantity -1===0)
+          {
             $scope.cartItems.splice(index,1);
-        }
+          }
         else{
          item.quantity--;
           item.price;
-    }
-   
+           }
     };
         
     //checking if item already exist
-    function getExistingItem(id){
+    function getExistingItem(id)
+    {
         for (var i=0; i< $scope.cartItems.length; i++)
         {
            if($scope.cartItems[i].product_id === id)
           {
              return $scope.cartItems[i];
-          }
-        }
+              }
+            }
         
         return null;
-                                     }
+    }
     
-    
-     //remove product from cart
+      ///////////////////////////////////remove product from cart////////////////////////////////////////////////
+     
        $scope.removeItem = function()
         {
-            
-                
              var index =$scope.cartItems.indexOf($scope.length);
                 $scope.cartItems.splice(index, 1);
         };
-    ////////////////////////////placeOrder///////////////////////////////////////////////
-		   $scope.placeOrder = function(){
-
-                     console.log("insidew place order");
-		        var deliveryDate = new Date();
-		        //var numberOfDaysAddToDate = deliveryDate.setDate(deliveryDate.getDate() + 7);
-		      
-		        var dat = {
-		            "total_amount": $scope.CartAmount,        
-		           "ordered_date": $filter('date')(new Date(), 'yyyy-MM-dd'),
-		            //"deliveryDate": $filter('date')(numberOfDaysAddToDate, 'yyyy-MM-dd'),
-		            "quantity":$scope.cartItems,
-		            "status":'true',
-                            //"customer":$scope.customerId,
-                            
-		          // "address":'Broadway'
-                       };
-                       
-                         console.log(dat);
-		        		$http.post('http://localhost:8080/Custorder',dat)
-		        		.then(
-		                function (response) {
-		                	
-		                    $scope.order = response.data;  
-		                },
-		                function(response) {
-		                    alert("failed");
-		                $location.url("/error");
-		                }  
-		        		);
-    
-   $scope.banks =[];
-      var urls = 'http://localhost:8080/pay';
-    
-                $http.defaults.headers.post["Content-Type"] = "application/json";
-
-            $http.get(urls, config).then(successCallback, errorCallback);
-               function successCallback(response) {
-                      $scope.banks=response.data;
-                      console.log($scope.banks);
-
-
- for(var i=0;i<$scope.banks.length;i++)
-{
-         if($scope.banks[i].cardHolder== $scope.cardHolder && $scope.banks[i].cardNo == $scope.cardNo)
-       
-  {
-      console.log("order successfully paid"); 
-      //alert("paid");
-        window.location.href = "/home";
-        
-        }
-        
-      
-
-else 
+      /////////////////////////////////updateProduct////////////////////////////////////////////////
+          $scope.updateProduct = function (Id)
         {
-        console.log("invalid cardholder and cardNumber"); 
-         //alert("unAuthorized detail");
-          window.location.href = "/index";
+            var name = $scope.name;
+              var description = $scope.description;
+                 var price = $scope.price;
+            
+           
+    $http.put('http://localhost:8080/update/' + Id + '/' + name + '/' + description + '/'+price+'').then(function(response){
+        console.log(response);
+          if(response.data !== 0)
+              {
+                alert("Product has been Updated");
+              }else{
+                    alert("Product Not Updated!..Product Name exists..!!!");
+                }
+            });
+        };
+        
+        
+    ////////////////////////////placeOrder///////////////////////////////////////////////
+
+   $scope.placeOrder  = function()
+         {
+          var cardN = $scope.cardNo;
+            var cardHolde = $scope.cardHolder;
+             
+             
+   $http.get('http://localhost:8080/pay/' + cardN + '/' + cardHolde).then(function(response){
+     console.log(response);
+        $scope.bankingdata = response.data;
+             if($scope.bankingdata !== null)
+             {
+                 if($scope.bankingdata.balance < $scope.CartAmount)
+                 {
+                    alert("insufficient Funds to \n\
+                           Processed with Order...");  
+                 }else{
+                          
+   var order= Math.floor((Math.random() * 10000) + 1);
+     for(var x = 0; x < $scope.cartItems.length; x++)
+     {           
+           
+           var name = $scope.cartItems[x].name;
+             var price = $scope.cartItems[x].price;
+               var quantity = $scope.cartItems[x].quantity;
+                 var description = $scope.cartItems[x].description;
+                   var totalAmount = $scope.cartItems[x].totalAmount;
+                     var image = $scope.cartItems[x].image;
+                       var orderNo = order;
+           
+    var data = {
+                "amount": totalAmount,      
+                "quantity":quantity,
+                "status":'true',
+                "name":name,
+                "price":price,
+                "description":description,
+                "image":image,
+                "orderno":orderNo
+               };
+           
+   console.log(data);
+    $http.post('http://localhost:8080/Custorder',data).then(function (response) {
+      $scope.order = response.data;  
+           
+                        
+        alert("successfully Ordered\n\
+               Order Number is: "
+                  + orderNo);
+   });
+      }   
         }
+          }else
+             {
+console.log("Account Not Authorized");
+  alert("UnAuthorized bank detail..Verify your detail...");
+                        
+             }
+                     
+     });
+      };
 
-  }
-
-      }
-        function errorCallback(response) {
-            console.log(response);
-
-      };        
-};
+  $http.get('http://localhost:8080/order').then(function(response)
+          {
+                console.log(response);
+                      $scope.custOrders = response.data;
+	 });     
+});
+    
+  
    
-  });
- 
-//});
-//          //shipping
-//          
-//    myMod.controller("shipping", function ($scope, $http,$location)
-//		{
-//	var config = {
-//            headers: {
-//               'Content-Type': 'application/json;charset=utf-8;'
-//            }
-//        };
-//        $http.defaults.headers.post["Content-Type"] = "application/json";
-//           var url = 'http://localhost:8080/ship';
-//             $scope.create = function ()
-//            {
-//
-//                $http.post(url,{
-//                      fname: $scope.fname,
-//                       lname: $scope.lname,
-//                        email: $scope.email,
-//                         phone: $scope.phone,
-//                          address:$scope.address,
-//                           province:$scope.province,
-//                            street:$scope.street,
-//                             company:$scope.company
-//
-//
-//            });
-//            console.log("dont exist");
-//
-//            };
-                 
+   
+               
